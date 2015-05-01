@@ -1,0 +1,6 @@
+- title t('.title')
+
+- if can? :index, User
+  %p.nav= link_to t('back'), users_path, class: 'index'
+
+= render 'form'

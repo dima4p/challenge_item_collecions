@@ -1,0 +1,31 @@
+---
+en:
+  activerecord:
+    models:
+      user: "User"
+    attributes:
+      user: 
+        email: "Email"
+        name: "Name"
+  helpers:
+    submit:
+      user:
+        create: "Create user"
+        update: "Update user"
+  users:
+    edit:
+      title: "Editing of the user"
+    form:
+      user: "User"
+    index:
+      confirm: "Are you sure you want to delete the user?"
+      empty: "No users found"
+      new_user: "Add a new user"
+      title: "Listing of users"
+    new:
+      title: "Adding a new user"
+    show:
+      title: "User details"
+    was_created: "User was successfully added"
+    was_deleted: "User was successfully deleted"
+    was_updated: "User was successfully updated"
