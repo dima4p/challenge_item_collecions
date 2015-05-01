@@ -6,3 +6,6 @@ For the simplicity and speed up
 3. ActionMailer is not set up
 4. guard is used
 5. rubocop is not used
+6. Only one locale is used and support is not included
+7. Only one name is used for User (not 3)
+8. Request specs are dropped
