@@ -31,5 +31,14 @@ module ItemCollecions
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.colorize_logging = false if ENV['colorize_logging'] == 'false'
+
+    config.sass.preferred_syntax = :sass
+    config.generators do |g|
+      g.cancan true
+      g.colorize_logging = true
+    end
+
   end
 end
