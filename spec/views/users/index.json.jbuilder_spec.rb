@@ -24,9 +24,5 @@ describe "users/index.json.jbuilder", type: :view do
     expected = MultiJson.load MultiJson.dump expected
     expected['url'] = user_url(@user, format: 'json')
     expect(hash).to eq expected
-    # expect(hash['id']).to eq @user.id.to_s
-    # expect(hash['email']).to eq @user.email.to_s
-    # expect(hash['name']).to eq @user.name.to_s
-    # expect(hash['url']).to eq user_url(@user, format: 'json')
   end
 end

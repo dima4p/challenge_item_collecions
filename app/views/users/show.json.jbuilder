@@ -1,1 +1,4 @@
-json.extract! @user, :id, :email, :name, :created_at, :updated_at
+list = [:id, :name]
+list << :email if can? :show_email, @user
+
+json.extract! @user, *list

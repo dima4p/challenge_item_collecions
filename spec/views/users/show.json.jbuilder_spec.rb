@@ -10,8 +10,6 @@ describe "users/show.json.jbuilder", type: :view do
     id
     email
     name
-    created_at
-    updated_at
   ]
 
   it "renders the following attributes of user: #{attributes.join(', ')} as json" do
@@ -22,10 +20,5 @@ describe "users/show.json.jbuilder", type: :view do
     expected = @user.attributes.slice *attributes
     expected = MultiJson.load MultiJson.dump expected
     expect(hash).to eq expected
-    # expect(hash['id']).to eq @user.id.to_s
-    # expect(hash['email']).to eq @user.email.to_s
-    # expect(hash['name']).to eq @user.name.to_s
-    # expect(hash['created_at']).to eq @user.created_at.to_s
-    # expect(hash['updated_at']).to eq @user.updated_at.to_s
   end
 end

@@ -42,6 +42,10 @@ class User < ActiveRecord::Base
     UserMailer.password_reset_instructions(self).deliver_now
   end
 
+  def is_tester?
+    false
+  end
+
   private
 
   def set_admin_for_first

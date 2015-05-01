@@ -70,6 +70,12 @@ describe User, type: :model do
     end
   end
 
+  describe '#is_tester?' do
+    it 'returns false' do
+      expect(subject.is_tester?).to be false
+    end
+  end
+
   describe :class do
     it 'should respond to :ordered' do
       create :user
