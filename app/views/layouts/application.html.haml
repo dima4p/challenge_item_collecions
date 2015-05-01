@@ -1,0 +1,68 @@
+!!! 5
+%html
+
+  %head
+    %title
+      - title = yield(:title)
+      = title.present? ? title : "Untitled"
+      |
+      = t :application_name
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    = favicon_link_tag @favicon || 'application.ico'
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+    /[if lt IE 9]
+      %script{src: "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"}
+      %script{src: "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"}
+
+  %body{:lang => I18n.locale,
+    :class => [controller.controller_name, controller.action_name, yield(:body_class)]}
+    - @debug_ability.try :each do |ability|
+      %p
+        = ability.inspect
+    %header
+      -# = link_to '#', class: 'image_link' do
+        = image_tag 'logo.png'
+      -#user_nav
+        - if logged_in?
+          = t :you_are_logged_as, :name => current_user.email
+          |
+          = link_to t(:edit_profile), edit_user_path(current_user)
+          |
+          = link_to t(:logout), logout_path, data: {'no-turbolink' => true}
+          |
+        - else
+          = link_to t(:login), login_path
+          |
+        -#locale_select
+          - if I18n.available_locales.size > 1
+            - I18n.available_locales.each do |lang|
+              - if lang == I18n.locale
+                .language.current
+                  = lang.to_s.upcase
+              - elsif request.get?
+                - locale = I18n.locale.to_s
+                - lang = lang.to_s
+                - path = request.fullpath
+                - path = path.index(locale) == 1 ? path.sub(locale, lang) : "/#{lang}#{path}"
+                .language.other_language
+                  = link_to lang.to_s.upcase, path
+              - else
+                .language.other_language
+                  = lang.to_s.upcase
+
+    #container
+      -# = render "layouts/admin_menu"
+      -# = render "layouts/main_menu"
+
+      #content
+        - flash.each do |name, msg|
+          = content_tag :div, msg.html_safe, :id => "flash_#{name}"
+
+        - if respond_to?(:show_title?) and show_title?
+          %h1
+            = yield(:title)
+
+        #view
+          = yield
