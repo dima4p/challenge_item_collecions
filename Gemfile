@@ -88,6 +88,7 @@ group :development, :test do
   gem 'require_all'
 
   # Guard, spec, and other
+  gem 'factory_girl_rails', github: 'dima4p/factory_girl_rails'
   gem 'guard'
   gem 'guard-rspec'
   gem 'listen'
@@ -98,7 +99,6 @@ end
 group :test do
   gem 'capybara'
   gem 'poltergeist'
-  gem 'factory_girl_rails', github: 'dima4p/factory_girl_rails'
   gem 'shoulda'
   gem 'email_spec'
 end
