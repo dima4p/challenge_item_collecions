@@ -1,5 +1,4 @@
 @import colors
-@import fancy-buttons
 
 body
   background-color: $body_bg
@@ -62,20 +61,6 @@ a
   &:hover
     color: $link_hover
     background-color: $link_hover_bg
-  &.back
-    +fancy-button($record_back_color, 12px)
-  &.cancel
-    +fancy-button($cancel_button_color, 12px)
-  &.index
-    +fancy-button($record_index_color, 12px)
-  &.new
-    +fancy-button($record_add_color, 12px)
-  &.show
-    +fancy-button($record_show_color, 12px)
-  &.edit
-    +fancy-button($record_edit_color, 12px)
-  &.destroy
-    +fancy-button($record_destroy_color, 12px)
   img
     border: none
 
@@ -150,7 +135,7 @@ ul.pagination
     background-color: $main_menu_bg
     // background: image-url('menu.png') repeat-x scroll 0 0 $main_menu_bg
     border: 1px solid $main_menu_border
-    +border-radius(5px)
+    border-radius: 5px
     color: $main_menu_color
     font-weight: bold
     font-size: 15px
