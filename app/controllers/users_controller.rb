@@ -36,8 +36,13 @@ class UsersController < ApplicationController
   def create
     # @user = User.new(user_params)
 
+    if User.limit(1).count == 0
+      @user.save
+    else
+      @user.save_without_session_maintenance and @user.deliver_activation_instructions!
+    end
     respond_to do |format|
-      if @user.save
+      if @user.valid?
         format.html { redirect_to @user, notice: t('users.was_created') }
         format.json { render :show, status: :created, location: @user }
       else
@@ -81,7 +86,7 @@ class UsersController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
     list = [
-      :email, :name
+      :email, :name, :password, :password_confirmation
     ]
     params.require(:user).permit(*list)
   end

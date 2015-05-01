@@ -1,3 +1,12 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass here: http://sass-lang.com/
+
+@import colors
+
+body.users
+  a.password_change
+    &:visited
+      color: $link
+  div.disabled
+    display: none

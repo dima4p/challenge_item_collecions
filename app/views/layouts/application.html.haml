@@ -24,19 +24,18 @@
     %header
       -# = link_to '#', class: 'image_link' do
         = image_tag 'logo.png'
-      -#user_nav
+      #user_nav
         - if logged_in?
-          = t :you_are_logged_as, :name => current_user.email
+          = t :you_are_logged_as, :name => current_user.name
           |
           = link_to t(:edit_profile), edit_user_path(current_user)
           |
           = link_to t(:logout), logout_path, data: {'no-turbolink' => true}
-          |
         - else
           = link_to t(:login), login_path
-          |
-        -#locale_select
+        #locale_select
           - if I18n.available_locales.size > 1
+            |
             - I18n.available_locales.each do |lang|
               - if lang == I18n.locale
                 .language.current

@@ -1,0 +1,33 @@
+--- 
+en:
+  authlogic:
+    attributes:
+      user_session:
+        email: E-mail
+        login: Login
+        password: Password
+        remember_me: Remember me
+    do_login: Login
+    do_not_have_account: Don't have an account?
+    error_messages:
+      consecutive_failed_logins_limit_exceeded: Consecutive failed logins limit exceeded, account is disabled.
+      email_invalid: 'Please, enter correct email'
+      login_blank: can not be blank
+      login_failed: Login failed
+      login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+      login_not_found: is not valid
+      no_authentication_details: You did not provide any details for authentication.
+      not_active: Your account is not active
+      not_approved: Your account is not approved
+      not_confirmed: Your account is not confirmed
+      password_blank: can not be blank
+      password_invalid: is not valid
+    logged_in: Hello, %{name}!
+    lgged_out: Good bye!
+    models:
+      user_session: UserSession
+    register: Sigh Up!
+    sign_up: Sign up
+  user_sessions:
+    new:
+      login: Login

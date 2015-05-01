@@ -5,8 +5,17 @@ en:
       user: "User"
     attributes:
       user: 
+        current_login_at: "Current login at"
+        current_login_ip: "Current login ip"
         email: "Email"
+        failed_login_count: "Failed login count"
+        last_login_at: "Last login at"
+        last_login_ip: "Last login ip"
+        last_request_at: "Last request at"
+        login_count: "Login count"
         name: "Name"
+        password: Password
+        password_confirmation: "Password confirmation"
   helpers:
     submit:
       user:
@@ -16,6 +25,7 @@ en:
     edit:
       title: "Editing of the user"
     form:
+      change_password: "Change password"
       user: "User"
     index:
       confirm: "Are you sure you want to delete the user?"

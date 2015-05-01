@@ -9,7 +9,11 @@ describe UsersController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well. The list could not be empty.
-  let(:valid_attributes) {FactoryGirl.build(:user).attributes.slice *%w[email name]}
+  let(:valid_attributes) do
+    user = build(:user)
+    user.attributes.slice(*%w[email name])
+    .merge(password: 'password', password_confirmation: 'password')
+  end
 
   let(:invalid_attributes) do
      {name: ''}
@@ -70,6 +74,12 @@ describe UsersController, type: :controller do
         post :create, {user: valid_attributes}, valid_session
         expect(response).to redirect_to(User.last)
         # expect(response).to redirect_to(users_url)
+      end
+
+      it "sends the activation instructions to the created user" do
+        create :user    # First user is not notified
+        expect_any_instance_of(User).to receive(:deliver_activation_instructions!)
+        post :create, {:user => valid_attributes}, valid_session
       end
     end
 

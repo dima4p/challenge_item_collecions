@@ -40,5 +40,6 @@ module ItemCollecions
       g.colorize_logging = true
     end
 
+    config.action_mailer.default_options = {from: 'veronica@applift.com'}
   end
 end

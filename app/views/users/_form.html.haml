@@ -4,6 +4,15 @@
   .form-inputs
     = f.input :email
     = f.input :name
+    - if @user.new_record?
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
+    - elsif can? :change_password, @user
+      %div
+        %label
+        = link_to t('.change_password'), '#', class: 'password_change'
+      = f.input :password, disabled: true, wrapper_html: {style: 'display: none;'}
+      = f.input :password_confirmation, disabled: true, wrapper_html: {style: 'display: none;'}
 
   .form-actions
     = f.button :submit
