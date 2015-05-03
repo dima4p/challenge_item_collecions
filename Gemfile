@@ -33,6 +33,7 @@ gem 'cancancan', github: 'dima4p/cancancan', branch: 'develop'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'simple_form'
+gem 'wice_grid'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
