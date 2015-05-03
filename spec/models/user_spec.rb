@@ -2,11 +2,24 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  email      :string
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id                  :integer          not null, primary key
+#  email               :string
+#  name                :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  active              :boolean          default(FALSE), not null
+#  persistence_token   :string
+#  crypted_password    :string
+#  password_salt       :string
+#  perishable_token    :string
+#  single_access_token :string
+#  login_count         :integer          default(0), not null
+#  failed_login_count  :integer          default(0), not null
+#  last_request_at     :datetime
+#  current_login_at    :datetime
+#  last_login_at       :datetime
+#  current_login_ip    :string
+#  last_login_ip       :string
 #
 
 require 'rails_helper'
