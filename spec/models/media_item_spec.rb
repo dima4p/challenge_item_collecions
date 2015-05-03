@@ -19,6 +19,7 @@ describe MediaItem, type: :model do
   subject { create :media_item }
 
   it { should be_valid }
+  it {should validate_presence_of(:name)}
 
   describe :class do
     it 'should respond to :ordered' do
