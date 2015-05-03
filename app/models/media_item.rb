@@ -18,6 +18,8 @@ class MediaItem < ActiveRecord::Base
 
   belongs_to :user
 
+  validates :name, presence: true
+
   scope :ordered, -> { order(:name) }
 
 end
