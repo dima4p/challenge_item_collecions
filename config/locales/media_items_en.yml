@@ -1,0 +1,34 @@
+---
+en:
+  activerecord:
+    models:
+      media_item: "Media item"
+    attributes:
+      media_item: 
+        name: "Name"
+        type: "Type"
+        user: "User"
+        link: "Link"
+        image: "Image"
+  helpers:
+    submit:
+      media_item:
+        create: "Create media_item"
+        update: "Update media_item"
+  media_items:
+    edit:
+      title: "Editing of the media item"
+    form:
+      media_item: "Media item"
+    index:
+      confirm: "Are you sure you want to delete the media item?"
+      empty: "No media items found"
+      new_media_item: "Add a new media item"
+      title: "Listing of media items"
+    new:
+      title: "Adding a new media item"
+    show:
+      title: "Media item details"
+    was_created: "Media item was successfully added"
+    was_deleted: "Media item was successfully deleted"
+    was_updated: "Media item was successfully updated"

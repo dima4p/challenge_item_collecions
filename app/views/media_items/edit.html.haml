@@ -1,0 +1,8 @@
+- title t('.title')
+
+%p.nav
+  - if can? :index, MediaItem
+    = link_to t('back'), media_items_path, class: 'index'
+  - if can? :show, @media_item
+    = link_to t('show'), @media_item, class: 'show'
+= render 'form'

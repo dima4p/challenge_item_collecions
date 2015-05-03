@@ -1,0 +1,19 @@
+- title t('.title')
+
+%p.nav
+  - if can? :index, MediaItem
+    = link_to t('back'), media_items_path, class: 'index'
+  - if can? :edit, @media_item
+    = link_to t('edit'), edit_media_item_path(@media_item), class: 'edit'
+
+%dl
+  %dt= MediaItem.human_attribute_name :name
+  %dd= @media_item.name
+  %dt= MediaItem.human_attribute_name :type
+  %dd= @media_item.type
+  %dt= MediaItem.human_attribute_name :user
+  %dd= @media_item.user.try :name
+  %dt= MediaItem.human_attribute_name :link
+  %dd= @media_item.link
+  %dt= MediaItem.human_attribute_name :image
+  %dd= @media_item.image

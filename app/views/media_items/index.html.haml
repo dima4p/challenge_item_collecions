@@ -1,0 +1,63 @@
+- title t('.title')
+
+- if can? :new, MediaItem
+  %p.nav= link_to t('.new_media_item'), new_media_item_path, class: 'new'
+
+- if @grid
+  = grid @grid do |g|
+    - g.column name: MediaItem.human_attribute_name(:name),
+      :attribute => 'name' do |media_item|
+      - media_item.name
+    - g.column name: MediaItem.human_attribute_name(:type),
+      :attribute => 'type' do |media_item|
+      - media_item.type
+    - g.column name: MediaItem.human_attribute_name(:user),
+      :attribute => 'user_id' do |media_item|
+      - media_item.user.try :name
+    - g.column name: MediaItem.human_attribute_name(:link),
+      :attribute => 'link' do |media_item|
+      - media_item.link
+    - g.column name: MediaItem.human_attribute_name(:image),
+      :attribute => 'image' do |media_item|
+      - media_item.image
+    - g.column do |media_item|
+      - if can? :show, media_item
+        - link_to t('show'), media_item_path(media_item), class: 'show'
+    - g.column do |media_item|
+      - if can? :edit, media_item
+        - link_to t('edit'), edit_media_item_path(media_item), class: 'edit'
+    - g.column do |media_item|
+      - if can? :destroy, media_item
+        - link_to t('destroy'), media_item_path(media_item),
+          data: {confirm: t('.confirm', default: 'Are you sure?')},
+          method: :delete, class: 'destroy'
+-else
+  %table
+    %thead
+      %tr
+        %th= MediaItem.human_attribute_name :name
+        %th= MediaItem.human_attribute_name :type
+        %th= MediaItem.human_attribute_name :user
+        %th= MediaItem.human_attribute_name :link
+        %th= MediaItem.human_attribute_name :image
+        %th{:colspan => 3}= t 'actions'
+
+    %tbody
+      - @media_items.each do |media_item|
+        %tr{ :class => cycle(:odd, :even) }
+          %td= media_item.name
+          %td= media_item.type
+          %td= media_item.user.try :name
+          %td= media_item.link
+          %td= media_item.image
+          %td.action
+            - if can? :show, media_item
+              = link_to t('show'), media_item_path(media_item), class: 'show'
+          %td.action
+            - if can? :edit, media_item
+              = link_to t('edit'), edit_media_item_path(media_item), class: 'edit'
+          %td.action
+            - if can? :destroy, media_item
+              = link_to t('destroy'), media_item_path(media_item),
+                data: {confirm: t('.confirm', default: 'Are you sure?')},
+                method: :delete, class: 'destroy'
