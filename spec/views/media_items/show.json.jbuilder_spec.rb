@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 describe "media_items/show.json.jbuilder", type: :view do
+  let (:media_item) {create :media_item}
   before(:each) do
     allow(controller).to receive(:can?).and_return(true)
-    @media_item = assign(:media_item, create(:media_item))
+    assign(:media_item, media_item)
   end
 
   attributes = %w[
@@ -11,27 +12,54 @@ describe "media_items/show.json.jbuilder", type: :view do
     name
     type
     user_id
-    link
-    image
     created_at
     updated_at
   ]
+  link_attributes = attributes + ['link']
+  photo_attributes = attributes + ['image']
+  video_attributes = attributes + ['link']
 
-  it "renders the following attributes of media_item: #{attributes.join(', ')} as json" do
-    render
+  it 'should show user_url instead of user_id'
 
-    hash = MultiJson.load rendered
-    expect(hash.keys.sort).to eq attributes.sort
-    expected = @media_item.attributes.slice *attributes
-    expected = MultiJson.load MultiJson.dump expected
-    expect(hash).to eq expected
-    # expect(hash['id']).to eq @media_item.id.to_s
-    # expect(hash['name']).to eq @media_item.name.to_s
-    # expect(hash['type']).to eq @media_item.type.to_s
-    # expect(hash['user']).to eq @media_item.user.to_s
-    # expect(hash['link']).to eq @media_item.link.to_s
-    # expect(hash['image']).to eq @media_item.image.to_s
-    # expect(hash['created_at']).to eq @media_item.created_at.to_s
-    # expect(hash['updated_at']).to eq @media_item.updated_at.to_s
+  describe 'for LinkItem' do
+    let(:media_item) {create :link_item}
+
+    it "renders the following attributes of media_item: #{link_attributes.join(', ')} as json" do
+      render
+
+      hash = MultiJson.load rendered
+      expect(hash.keys.sort).to eq link_attributes.sort
+      expected = media_item.attributes.slice *link_attributes
+      expected = MultiJson.load MultiJson.dump expected
+      expect(hash).to eq expected
+    end
+  end
+
+  describe 'for PhotoItem' do
+    let(:media_item) {create :photo_item}
+
+    it "renders the following attributes of media_item: #{photo_attributes.join(', ')} as json" do
+      render
+
+      hash = MultiJson.load rendered
+      expect(hash.keys.sort).to eq photo_attributes.sort
+      expected = media_item.attributes.slice *photo_attributes
+      expected = MultiJson.load MultiJson.dump expected
+      expect(hash).to eq expected
+    end
+  end
+
+  describe 'for VideoItem' do
+    let(:media_item) {create :video_item}
+
+    it "renders the following attributes of media_item: #{video_attributes.join(', ')} as json" do
+      render
+
+      hash = MultiJson.load rendered
+      expect(hash.keys.sort).to eq video_attributes.sort
+      expected = media_item.attributes.slice *video_attributes
+      expected = MultiJson.load MultiJson.dump expected
+      expect(hash).to eq expected
+    end
   end
 end
