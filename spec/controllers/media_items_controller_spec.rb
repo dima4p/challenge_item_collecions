@@ -9,10 +9,10 @@ describe MediaItemsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # MediaItem. As you add validations to MediaItem, be sure to
   # adjust the attributes here as well. The list could not be empty.
-  let(:valid_attributes) {FactoryGirl.build(:media_item).attributes.slice *%w[name]}
+  let(:valid_attributes) {FactoryGirl.build(:media_item).attributes.slice *%w[name type]}
 
   let(:invalid_attributes) do
-    skip("Add a hash of attributes invalid for your model")
+    {name: ''}
   end
 
   # This should return the minimal set of values that should be in the session
@@ -71,7 +71,7 @@ describe MediaItemsController, type: :controller do
 
       it "redirects to the created media_item" do
         post :create, {media_item: valid_attributes}, valid_session
-        expect(response).to redirect_to(MediaItem.last)
+        expect(response).to redirect_to(media_item_url MediaItem.last)
         # expect(response).to redirect_to(media_items_url)
       end
     end
