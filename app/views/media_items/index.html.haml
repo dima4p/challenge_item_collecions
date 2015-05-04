@@ -14,10 +14,10 @@
     - g.column name: MediaItem.human_attribute_name(:user),
       :attribute => 'user_id' do |media_item|
       - media_item.user.try :name
-    - g.column name: MediaItem.human_attribute_name(:link),
+    -# g.column name: MediaItem.human_attribute_name(:link),
       :attribute => 'link' do |media_item|
       - media_item.link
-    - g.column name: MediaItem.human_attribute_name(:image),
+    -# g.column name: MediaItem.human_attribute_name(:image),
       :attribute => 'image' do |media_item|
       - media_item.image
     - g.column do |media_item|
@@ -38,8 +38,8 @@
         %th= MediaItem.human_attribute_name :name
         %th= MediaItem.human_attribute_name :type
         %th= MediaItem.human_attribute_name :user
-        %th= MediaItem.human_attribute_name :link
-        %th= MediaItem.human_attribute_name :image
+        -# %th= MediaItem.human_attribute_name :link
+        -# %th= MediaItem.human_attribute_name :image
         %th{:colspan => 3}= t 'actions'
 
     %tbody
@@ -48,8 +48,8 @@
           %td= media_item.name
           %td= media_item.type
           %td= media_item.user.try :name
-          %td= media_item.link
-          %td= media_item.image
+          -# %td= media_item.link
+          -# %td= media_item.image
           %td.action
             - if can? :show, media_item
               = link_to t('show'), media_item_path(media_item), class: 'show'
