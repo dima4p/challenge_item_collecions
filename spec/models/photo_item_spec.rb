@@ -12,8 +12,12 @@
 #  updated_at :datetime         not null
 #
 
-# Model MediaItem defines the Itmes of kind link for the collecions
-#
-class LinkItem < MediaItem
+require 'rails_helper'
+
+describe PhotoItem, type: :model do
+
+  subject { create :photo_item }
+
+  it { should be_valid }
 
 end

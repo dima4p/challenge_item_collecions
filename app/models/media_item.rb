@@ -19,7 +19,7 @@ class MediaItem < ActiveRecord::Base
   belongs_to :user
 
   validates :name, presence: true, uniqueness: {scope: :user_id}
-  validates_inclusion_of :type, in: %w[LinkItem VideoItem PhotoItem]
+  validates_inclusion_of :type, in: %w[LinkItem PhotoItem VideoItem]
 
   scope :ordered, -> { order(:name) }
 

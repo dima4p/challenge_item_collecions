@@ -12,8 +12,8 @@
 #  updated_at :datetime         not null
 #
 
-# Model MediaItem defines the Itmes of kind link for the collecions
+# Model MediaItem defines the Itmes of kind video for the collecions
 #
-class LinkItem < MediaItem
+class VideoItem < MediaItem
 
 end
