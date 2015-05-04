@@ -20,6 +20,8 @@ describe MediaItem, type: :model do
 
   it { should be_valid }
   it {should validate_presence_of(:name)}
+  it {should validate_uniqueness_of(:name).scoped_to(:user_id)
+}
 
   describe :class do
     it 'should respond to :ordered' do
