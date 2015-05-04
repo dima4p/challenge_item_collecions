@@ -13,8 +13,8 @@ describe "media_items/index", type: :view do
     assert_select 'tr>td', text: @media_item.name.to_s, count: 1
     assert_select 'tr>td', text: @media_item.type.to_s, count: 1
     assert_select 'tr>td', text: @media_item.user.name, count: 1
-    assert_select 'tr>td', text: @media_item.link.to_s, count: 1
-    assert_select 'tr>td', text: @media_item.image.to_s, count: 1
+    assert_select 'tr>td', text: @media_item.link.to_s, count: 0
+    assert_select 'tr>td', text: @media_item.image.to_s, count: 0
   end
 
   it "renders a list of media_items in WiceGrid" do
@@ -24,7 +24,7 @@ describe "media_items/index", type: :view do
     assert_select 'tr>td', text: @media_item.name.to_s, count: 1
     assert_select 'tr>td', text: @media_item.type.to_s, count: 1
     assert_select 'tr>td', text: @media_item.user.name, count: 1
-    assert_select 'tr>td', text: @media_item.link.to_s, count: 1
-    assert_select 'tr>td', text: @media_item.image.to_s, count: 1
+    assert_select 'tr>td', text: @media_item.link.to_s, count: 0
+    assert_select 'tr>td', text: @media_item.image.to_s, count: 0
   end
 end
