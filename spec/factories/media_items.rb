@@ -20,16 +20,16 @@ FactoryGirl.define do
     sequence(:link) {|n| "Link #{n}" }
   end
 
-  factory :link_item, parent: :media_item do
+  factory :link_item, parent: :media_item, class: LinkItem do
     sequence(:link) {|n| "http://google.com?q=Link#{n}" }
   end
 
-  factory :photo_item, parent: :media_item do
+  factory :photo_item, parent: :media_item, class: PhotoItem do
     type 'PhotoItem'
     image 'filename'
   end
 
-  factory :video_item, parent: :media_item do
+  factory :video_item, parent: :media_item, class: VideoItem do
     type 'VideoItem'
     link 'http://www.youtube.com/embed/XGSy3_Czz8k'
   end

@@ -15,11 +15,10 @@ describe "media_items/show", type: :view do
       assert_select 'dl>dd', text: Regexp.new(media_item.name.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.type.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.user.name)
-      assert_select 'dl>dd', text: Regexp.new(media_item.link.to_s)
+      assert_select 'dl>dd', text: Regexp.new(Regexp.escape media_item.link.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.image.to_s), count: 0
     end
   end
-
 
   describe 'for PhotoItem' do
     let(:media_item) {create :photo_item, link: 'link'}
@@ -33,6 +32,7 @@ describe "media_items/show", type: :view do
       assert_select 'dl>dd', text: Regexp.new(media_item.image.to_s)
     end
   end
+
   describe 'for VideoItem' do
     let(:media_item) {create :video_item, image: 'image'}
 
@@ -41,7 +41,7 @@ describe "media_items/show", type: :view do
       assert_select 'dl>dd', text: Regexp.new(media_item.name.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.type.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.user.name)
-      assert_select 'dl>dd', text: Regexp.new(media_item.link.to_s)
+      assert_select 'dl>dd', text: Regexp.new(Regexp.escape media_item.link.to_s)
       assert_select 'dl>dd', text: Regexp.new(media_item.image.to_s), count: 0
     end
   end
