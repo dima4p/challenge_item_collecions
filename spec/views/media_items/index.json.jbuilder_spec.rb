@@ -18,6 +18,8 @@ describe "media_items/index.json.jbuilder", type: :view do
   photo_attributes = attributes + ['image']
   video_attributes = attributes + ['link']
 
+  it 'should show user_url instead of user_id'
+
   describe 'for LinkItem' do
     let(:media_item) {create :link_item}
 
@@ -26,8 +28,8 @@ describe "media_items/index.json.jbuilder", type: :view do
 
       hash = MultiJson.load rendered
       expect(hash.first).to eq(hash = hash.last)
-      expect(hash.keys.sort).to eq attributes.sort
-      expected = media_item.attributes.slice *attributes
+      expect(hash.keys.sort).to eq link_attributes.sort
+      expected = media_item.attributes.slice *link_attributes
       expected = MultiJson.load MultiJson.dump expected
       expected['url'] = media_item_url(media_item, format: 'json')
       expect(hash).to eq expected
@@ -35,15 +37,15 @@ describe "media_items/index.json.jbuilder", type: :view do
   end
 
   describe 'for PhotoItem' do
-    let(:media_item) {create :link_item}
+    let(:media_item) {create :photo_item}
 
     it "renders a list of media_items as json with following attributes: #{photo_attributes.join(', ')}" do
       render
 
       hash = MultiJson.load rendered
       expect(hash.first).to eq(hash = hash.last)
-      expect(hash.keys.sort).to eq attributes.sort
-      expected = media_item.attributes.slice *attributes
+      expect(hash.keys.sort).to eq photo_attributes.sort
+      expected = media_item.attributes.slice *photo_attributes
       expected = MultiJson.load MultiJson.dump expected
       expected['url'] = media_item_url(media_item, format: 'json')
       expect(hash).to eq expected
@@ -51,15 +53,15 @@ describe "media_items/index.json.jbuilder", type: :view do
   end
 
   describe 'for VideoItem' do
-    let(:video_item) {create :link_item}
+    let(:media_item) {create :video_item}
 
     it "renders a list of media_items as json with following attributes: #{link_attributes.join(', ')}" do
       render
 
       hash = MultiJson.load rendered
       expect(hash.first).to eq(hash = hash.last)
-      expect(hash.keys.sort).to eq attributes.sort
-      expected = media_item.attributes.slice *attributes
+      expect(hash.keys.sort).to eq link_attributes.sort
+      expected = media_item.attributes.slice *link_attributes
       expected = MultiJson.load MultiJson.dump expected
       expected['url'] = media_item_url(media_item, format: 'json')
       expect(hash).to eq expected

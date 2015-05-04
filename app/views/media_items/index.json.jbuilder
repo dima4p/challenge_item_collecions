@@ -1,6 +1,6 @@
 json.array!(@media_items) do |media_item|
   list = [:id, :name, :type, :user_id]
-  case media_item.class
+  case media_item
   when LinkItem
     list << 'link'
   when PhotoItem
